@@ -1,1 +1,2 @@
-export declare const version = "0.1.0";
+export { MpesaClient } from "./client/MpesaClient";
+export { MpesaConfig } from "./types/config";
