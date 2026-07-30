@@ -1,0 +1,19 @@
+{ 
+  "name": "safaricom-daraja-sdk",
+  "version":"0.1.0",
+  "description": "A modern, type-safe Typescript SDK for the Safaricom Daraja API",
+  "main":"dist/index.js",
+  "types":"dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build":"tsc",
+    "dev":"tsc --watch"
+  },
+  "keywords": ["mpesa","safaricom","daraja","sdk"],
+  "license":"MIT",
+  "devDependencies": {
+    "typescript":"^5.5.4"
+  }
+}
