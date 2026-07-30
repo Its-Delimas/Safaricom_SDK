@@ -7,7 +7,8 @@ const mpesa = new MpesaClient ({
     consumerSecret:"",
     shortCode:"174379",
     passKey:"",
-    environment:"sandbox"
+    environment:"sandbox",
+    callbackUrl:"https://mydomain.com/callback"
 });
 
 mpesa.testAuth().then((token1) => {

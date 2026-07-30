@@ -4,11 +4,12 @@ const MpesaClient_1 = require("./client/MpesaClient");
 const password_1 = require("./utils/password");
 const timestamp_1 = require("./utils/timestamp");
 const mpesa = new MpesaClient_1.MpesaClient({
-    consumerKey: "cNQxmvoSJKpTXlGM6pSWWLmH3897OOB3exRwV6wuWuDyDdGU",
-    consumerSecret: "Gv61Tb8OckpfMD5hRN4R8j4uGT2P6O0w99X7K2MyxAg0uFtvaghKeuL0wLuOOzWf",
+    consumerKey: "",
+    consumerSecret: "",
     shortCode: "174379",
     passKey: "",
-    environment: "sandbox"
+    environment: "sandbox",
+    callbackUrl: "https://mydomain.com/callback"
 });
 mpesa.testAuth().then((token1) => {
     console.log("First call:", token1);
