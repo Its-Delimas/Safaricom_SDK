@@ -4,5 +4,5 @@ export interface MpesaConfig {
     shortCode:string;
     passKey:string;
     environment:"sandbox"|"production";
-    callbackUrl:string;
+    CallBackURL:string;
 }

@@ -14,7 +14,7 @@ export interface DarajaSTKPushPayload {
     PartyA:string;
     PartyB:string;
     PhoneNumber:string;
-    CallBackUrl:string;
+    CallBackURL:string;
     AccountReference:string;
     TransactionDesc:string;
 }

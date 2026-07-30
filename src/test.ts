@@ -1,15 +1,13 @@
 import { MpesaClient } from "./client/MpesaClient";
-import { generatePassword } from "./utils/password";
-import { generateTimestamp } from "./utils/timestamp";
 
 const mpesa = new MpesaClient ({
     consumerKey:"",
     consumerSecret:"",
     shortCode:"174379",
-    passKey:"",
+    passKey:"bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
     environment:"sandbox",
-    callbackUrl:"https://webhook.site/7b525410-1dac-4500-a996-fa02c684a90a"
-});
+    CallBackURL:"https://webhook.site/7b525410-1dac-4500-a996-fa02c684a90a"
+})
 
 mpesa.stkPush({
   phone:"254708374149",

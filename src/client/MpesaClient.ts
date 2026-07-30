@@ -24,6 +24,7 @@ export class MpesaClient {
 
         this.http = new HttpClient(this.baseUrl);
     }
+    
     async stkPush (request:STKPushRequest):Promise<STKPushResponse>{
         const token = await this.tokenManager.getToken();
         const timestamp = generateTimestamp();
@@ -38,8 +39,8 @@ export class MpesaClient {
             this.config.shortCode,
             password,
             timestamp,
-            this.config.callbackUrl
-        );
+            this.config.CallBackURL
+        );       
 
         return this.http.post<STKPushResponse>(
             "/mpesa/stkpush/v1/processrequest",
@@ -48,3 +49,4 @@ export class MpesaClient {
         );
     }
 }
+
