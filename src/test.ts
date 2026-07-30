@@ -8,19 +8,17 @@ const mpesa = new MpesaClient ({
     shortCode:"174379",
     passKey:"",
     environment:"sandbox",
-    callbackUrl:"https://mydomain.com/callback"
+    callbackUrl:"https://webhook.site/7b525410-1dac-4500-a996-fa02c684a90a"
 });
 
-mpesa.testAuth().then((token1) => {
-  console.log("First call:", token1);
-  mpesa.testAuth().then((token2) => {
-    console.log("Second call:", token2);
-    console.log("Same token?", token1 === token2);
-  });
-});
+mpesa.stkPush({
+  phone:"254708374149",
+  amount:1,
+  accountReference:"TestOrder001",
+  transactionDesc:"Test a payment"
+}).then((res)=>{
+  console.log("STK Push response:",res)
+}).catch((err)=>{
+  console.error("STK Push failed:",err)
+})
 
-const timestamp = generateTimestamp();
-console.log("Timestamp",timestamp);
-
-const password = generatePassword("174379","my_passkey",timestamp);
-console.log("password",password)

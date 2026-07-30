@@ -18,3 +18,11 @@ export interface DarajaSTKPushPayload {
     AccountReference:string;
     TransactionDesc:string;
 }
+
+export interface STKPushResponse {
+    MerchantRequestID:string;
+    CheckoutRequestID:string;
+    ResponseCode:string;
+    ResponseDescription:string;
+    CustomerMessage:string;
+}
