@@ -1,4 +1,6 @@
 import { MpesaClient } from "./client/MpesaClient";
+import { generatePassword } from "./utils/password";
+import { generateTimestamp } from "./utils/timestamp";
 
 const mpesa = new MpesaClient ({
     consumerKey:"",
@@ -15,3 +17,9 @@ mpesa.testAuth().then((token1) => {
     console.log("Same token?", token1 === token2);
   });
 });
+
+const timestamp = generateTimestamp();
+console.log("Timestamp",timestamp);
+
+const password = generatePassword("174379","my_passkey",timestamp);
+console.log("password",password)
