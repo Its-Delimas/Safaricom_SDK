@@ -5,11 +5,14 @@ const TokenManager_1 = require("../auth/TokenManager");
 class MpesaClient {
     constructor(config) {
         this.config = config;
-        this.baseUrl = config.environment === "production" ? "https://api.safaricom.co.ke" : "https://sandbox.safaricom.co.ke";
+        this.baseUrl =
+            config.environment === "production"
+                ? "https://api.safaricom.co.ke"
+                : "https://sandbox.safaricom.co.ke";
+        this.tokenManager = new TokenManager_1.TokenManager(this.baseUrl, config.consumerKey, config.consumerSecret);
     }
-    async testauth() {
-        const tokenManager = new TokenManager_1.TokenManager(this.baseUrl, this.config.consumerKey, this.config.consumerSecret);
-        return tokenManager.getToken();
+    async testAuth() {
+        return this.tokenManager.getToken();
     }
 }
 exports.MpesaClient = MpesaClient;

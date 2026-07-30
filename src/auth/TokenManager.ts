@@ -9,6 +9,7 @@ export class TokenManager {
   ) {}
 
   async getToken(): Promise<string> {
+
     if (this.cachedToken && Date.now() < this.expiresAt) {
       return this.cachedToken;
     }
@@ -39,6 +40,6 @@ export class TokenManager {
     this.cachedToken = data.access_token;
     this.expiresAt = Date.now() + expiresInMs - safetyBufferMs;
 
-    return this.cachedToken;
+    return this.cachedToken!;
   }
 }

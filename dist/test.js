@@ -8,6 +8,10 @@ const mpesa = new MpesaClient_1.MpesaClient({
     passKey: "",
     environment: "sandbox"
 });
-mpesa.testauth().then((token) => {
-    console.log("Access token:", token);
+mpesa.testAuth().then((token1) => {
+    console.log("First call:", token1);
+    mpesa.testAuth().then((token2) => {
+        console.log("Second call:", token2);
+        console.log("Same token?", token1 === token2);
+    });
 });
