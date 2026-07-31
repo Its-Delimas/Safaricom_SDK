@@ -40,8 +40,6 @@ export class TokenManager {
     this.cachedToken = data.access_token;
     this.expiresAt = Date.now() + expiresInMs - safetyBufferMs;
 
-    console.log("Access Token:",this.cachedToken)
-
     return this.cachedToken!;
   }
 }
