@@ -15,6 +15,6 @@ export function buildStkPushPayloads(request:STKPushRequest,shortcode:string,pas
         PhoneNumber:phone,
         CallBackURL:callbackUrl,
         AccountReference:request.accountReference,
-        TransactionDesc:request.transactionDesc,
+        TransactionDesc:request.transactionDesc ?? "Payment",
     };
 }

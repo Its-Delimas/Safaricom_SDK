@@ -2,7 +2,7 @@ export interface STKPushRequest {
     phone:string;
     amount:number;
     accountReference:string;
-    transactionDesc:string;
+    transactionDesc?:string;
 }
 
 export interface DarajaSTKPushPayload {

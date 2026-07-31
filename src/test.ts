@@ -14,7 +14,7 @@ mpesa.stkPush({
   phone:"254708374149",
   amount:1,
   accountReference:"TestOrder001",
-  transactionDesc:"Test a payment"
+  transactionDesc:"Payment"
 }).then((res)=>{
   console.log("STK Push response:",res)
 }).catch((err)=>{

@@ -5,6 +5,7 @@ import { STKPushRequest,STKPushResponse } from "../types/stk";
 import { buildStkPushPayloads } from "../services/stk/BuildStkPushPayload";
 import { generateTimestamp } from "../utils/timestamp";
 import { generatePassword } from "../utils/password";
+import { validateStkPushRequest } from "../services/stk/ValidateStkPushRequest";
 
 export class MpesaClient {
     private readonly config:MpesaConfig;
@@ -26,6 +27,8 @@ export class MpesaClient {
     }
     
     async stkPush (request:STKPushRequest):Promise<STKPushResponse>{
+        validateStkPushRequest(request);
+        
         const token = await this.tokenManager.getToken();
         const timestamp = generateTimestamp();
         const password = generatePassword(
