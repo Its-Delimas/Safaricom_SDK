@@ -1,3 +1,25 @@
+// Query types
+export interface STKQueryRequest {
+    checkoutRequestId:string;
+}
+
+export interface DarajaSTKQueryPayload {
+    BusinessShortCode:string;
+    Password:string;
+    Timestamp:string;
+    CheckoutRequestID:string
+}
+
+export interface STKQueryResponse {
+    ResponseCode:string;
+    ResponseDescription:string;
+    MerchantRequestID:string;
+    CheckoutRequestID:string;
+    ResultCode:string;
+    ResultDesc:string;
+}
+
+// STKPush requets, payload and response 
 export interface STKPushRequest {
     phone:string;
     amount:number;

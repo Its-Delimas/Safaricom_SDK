@@ -1,11 +1,12 @@
 import { MpesaConfig } from "../types/config";
 import { TokenManager } from "../auth/TokenManager";
 import { HttpClient } from "../http/HttpClient";
-import { STKPushRequest,STKPushResponse } from "../types/stk";
+import { STKPushRequest,STKPushResponse, STKQueryResponse } from "../types/stk";
 import { buildStkPushPayloads } from "../services/stk/BuildStkPushPayload";
 import { generateTimestamp } from "../utils/timestamp";
 import { generatePassword } from "../utils/password";
 import { validateStkPushRequest } from "../services/stk/ValidateStkPushRequest";
+import { buildStkQueryPayload } from "../services/stk/BuildStkQueryPayload";
 
 export class MpesaClient {
     private readonly config:MpesaConfig;
@@ -50,6 +51,24 @@ export class MpesaClient {
             payload,
             token
         );
+    }
+
+    async queryCheckout(checkoutRequestId:string):Promise <STKQueryResponse>{
+        const token = await this.tokenManager.getToken()
+        const timestamp = generateTimestamp();
+        const password = generatePassword(
+            this.config.shortCode,
+            this.config.passKey,
+            timestamp
+        );
+
+        const payload = buildStkQueryPayload(
+            checkoutRequestId,this.config.shortCode,password,timestamp);
+
+            return this.http.post<STKQueryResponse>(
+                "/mpesa/stkpushquery/v1/query",
+                payload,token
+            );
     }
 }
 

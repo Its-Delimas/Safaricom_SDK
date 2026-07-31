@@ -11,13 +11,17 @@ const mpesa = new MpesaClient ({
 })
 
 mpesa.stkPush({
-  phone:"254708374149",
-  amount:1,
+  phone:"0118333997",
+  amount:1000000,
   accountReference:"TestOrder001",
-  transactionDesc:"Payment"
-}).then((res)=>{
-  console.log("STK Push response:",res)
+}).then (async (pushResponse)=> {
+  console.log("STK Push response:",pushResponse);
+  console.log("Waiting 10 seconds before querying...");
+  await new Promise((resolve)=>setTimeout(resolve,10000));
+
+  const queryResponse = await mpesa.queryCheckout(pushResponse.CheckoutRequestID);
+  console.log("STK Query response:",queryResponse);
 }).catch((err)=>{
-  console.error("STK Push failed:",err)
+  console.log("Error:",err)
 })
 
