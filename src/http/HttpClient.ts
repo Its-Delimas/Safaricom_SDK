@@ -16,8 +16,15 @@ export class HttpClient {
         });
 
         if(!response.ok){
-            const errorData = await response.json();
+            const rawText = await response.text();
 
+            let errorData:any ={};
+            try {
+                errorData = rawText ? JSON.parse(rawText):{};
+            }catch{
+                errorData = {}
+            }
+            
             const details = {
                 errorCode:errorData.errorCode ?? "UNKNOWN",
                 errorMessage:errorData.errorMessage ?? "Unknown Daraja error",
@@ -25,16 +32,15 @@ export class HttpClient {
                 httpStatus:response.status,
             };
 
-            if(details.errorCode.startsWith("404.001")){
-                throw new AuthenticationError(details);
-            }
-
-            if(details.errorCode.startsWith("400")){
-                throw new ValidationError(details);
-            }
-
-            throw new DarajaError(details)
+                if(details.errorCode.startsWith("404.001")){
+                    throw new AuthenticationError(details);
+                }else if(details.errorCode.startsWith("400")){
+                    throw new ValidationError(details);
+                } else {
+                    throw new DarajaError(details)
+                }     
         }
+        
         return response.json() as Promise<T>;
     }
 }

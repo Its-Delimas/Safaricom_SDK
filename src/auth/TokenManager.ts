@@ -1,3 +1,5 @@
+import { AuthenticationError } from "../errors/AuthenticationError";
+
 export class TokenManager {
   private cachedToken: string | null = null;
   private expiresAt: number = 0;
@@ -28,7 +30,23 @@ export class TokenManager {
       }
     );
 
-    const data = await response.json();
+
+    const rawText = await response.text()
+    let data:any = {};
+    try {
+      data = rawText ? JSON.parse(rawText):{};
+    }catch {
+      data = {}
+    }
+
+    if (!response.ok){
+      throw new AuthenticationError({
+        errorCode:data.errorCode ?? String(response.status),
+        errorMessage: data.errorMessage ?? rawText ?? "Failed to authenticate with Daraja",
+        requestId:data.requestId,
+        httpStatus:response.status,
+      })
+    }
 
     const expiresInMs = Number(data.expires_in) * 1000;
     const safetyBufferMs = 60 * 1000;

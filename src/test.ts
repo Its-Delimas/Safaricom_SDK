@@ -1,10 +1,11 @@
+import "dotenv/config"
 import { MpesaClient } from "./client/MpesaClient";
 
 const mpesa = new MpesaClient ({
-    consumerKey:"",
-    consumerSecret:"",
+    consumerKey:process.env.DARAJA_CONSUMER_KEY!,
+    consumerSecret:process.env.DARAJA_CONSUMER_SECRET!,
     shortCode:"174379",
-    passKey:"bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
+    passKey:process.env.DARAJA_PASSKEY!,
     environment:"sandbox",
     CallBackURL:"https://webhook.site/7b525410-1dac-4500-a996-fa02c684a90a"
 })
