@@ -1,3 +1,7 @@
+import { AuthenticationError } from "../errors/AuthenticationError";
+import { DarajaError } from "../errors/DarajaError";
+import { ValidationError } from "../errors/ValidationError";
+
 export class HttpClient {
     constructor (private readonly baseUrl:string){}
 
@@ -11,9 +15,25 @@ export class HttpClient {
             body:JSON.stringify(body),
         });
 
-        if (!response.ok){
-            const errorBody = await response.text();
-            throw new Error(`Daraja request failed (${response.status}:${errorBody})`);
+        if(!response.ok){
+            const errorData = await response.json();
+
+            const details = {
+                errorCode:errorData.errorCode ?? "UNKNOWN",
+                errorMessage:errorData.errorMessage ?? "Unknown Daraja error",
+                requestId:errorData.requestId,
+                httpStatus:response.status,
+            };
+
+            if(details.errorCode.startsWith("404.001")){
+                throw new AuthenticationError(details);
+            }
+
+            if(details.errorCode.startsWith("400")){
+                throw new ValidationError(details);
+            }
+
+            throw new DarajaError(details)
         }
         return response.json() as Promise<T>;
     }

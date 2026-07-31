@@ -16,7 +16,7 @@ export class TokenManager {
 
     const credentials = Buffer.from(
       `${this.consumerKey}:${this.consumerSecret}`
-    ).toString("base64");
+     ).toString("base64");
 
     const response = await fetch(
       `${this.baseUrl}/oauth/v1/generate?grant_type=client_credentials`,
@@ -27,10 +27,6 @@ export class TokenManager {
         },
       }
     );
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch token: ${response.status}`);
-    }
 
     const data = await response.json();
 
