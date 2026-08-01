@@ -1,1 +1,31 @@
-{"name":"safaricom-daraja-sdk","version":"0.1.0","description":"A modern, type-safe Typescript SDK for the Safaricom Daraja API","main":"dist/index.js","types":"dist/index.d.ts","files":["dist"],"scripts":{"build":"tsc","dev":"tsc --watch"},"keywords":["mpesa","safaricom","daraja","sdk"],"license":"MIT","devDependencies":{"@types/node":"^26.1.2","typescript":"^5.9.3"},"dependencies":{"dotenv":"^17.4.2","zod":"^4.4.3"}}
+{
+    "name": "safaricom-daraja-sdk",
+    "version": "0.1.0",
+    "description": "A modern, type-safe Typescript SDK for the Safaricom Daraja API",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "test": "vitest run"
+    },
+    "keywords": [
+        "mpesa",
+        "safaricom",
+        "daraja",
+        "sdk"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^26.1.2",
+        "typescript": "^5.9.3",
+        "vitest": "^4.1.10"
+    },
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "zod": "^4.4.3"
+    }
+}
