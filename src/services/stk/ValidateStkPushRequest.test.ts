@@ -21,5 +21,13 @@ describe("validateStkPushRequest",()=>{
         ).toThrow(ValidationError);
     });
 
-    it 
+    it ("throws validationErrror for an empty phone number",()=>{
+        expect(()=>
+            validateStkPushRequest({
+                phone:"",
+                amount:100,
+                accountReference:"Order001"
+            })
+        ).toThrow(ValidationError)
+    })
 })
