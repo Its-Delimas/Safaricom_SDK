@@ -11,4 +11,15 @@ describe("validateStkPushRequest",()=>{
                 accountReference:"Order1",
             })).not.toThrow();
     });
+
+    it("throws ValidationError for a negative number",()=>{
+        expect(()=>
+        validateStkPushRequest(
+           { phone:"071345678",
+            amount:-5,
+            accountReference:"Order001"})
+        ).toThrow(ValidationError);
+    });
+
+    it 
 })
