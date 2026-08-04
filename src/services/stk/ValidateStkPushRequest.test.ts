@@ -41,5 +41,13 @@ describe("validateStkPushRequest",()=>{
         ).toThrow(ValidationError)
     });
 
-    
-})
+    it("does not throw when a transaction desc is omitted",()=>{
+        expect(()=>
+            validateStkPushRequest({
+                phone:"0712345678",
+                amount:100,
+                accountReference:"Order001"
+            })
+        ).not.toThrow();
+    });
+});
