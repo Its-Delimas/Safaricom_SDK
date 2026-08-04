@@ -30,4 +30,16 @@ describe("validateStkPushRequest",()=>{
             })
         ).toThrow(ValidationError)
     })
+
+    it("throws validationError for an account reference longer than 12 characters",()=>{
+        expect(()=>
+            validateStkPushRequest({
+                phone:"0712345678",
+                amount:100,
+                accountReference:"Thisrefereceiswaytoooolongman"
+            })    
+        ).toThrow(ValidationError)
+    });
+
+    
 })
