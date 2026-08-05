@@ -35,6 +35,28 @@ describe("parseCallback",()=>{
             phoneNumber: "254708374149",
             transactionDate: "20260731170000",
         })
+    });
+
+    it("parses a callback with no metadata",()=>{
+        const sampleFailure :DarajaSTKCallbackBody = {
+            Body: {
+                stkCallback:{
+                    MerchantRequestID: "125e-4091-abd7-137c1517ac6f99999",
+                    CheckoutRequestID: "ws_CO_310720261700448118333998",
+                    ResultCode: 1032,
+                    ResultDesc: "Request cancelled by user",
+                }
+            }
+        }
+        const result = parseCallback(sampleFailure);
+
+        expect(result).toEqual({
+            success: false,
+            merchantRequestId: "125e-4091-abd7-137c1517ac6f99999",
+            checkoutRequestId: "ws_CO_310720261700448118333998",
+            resultCode: 1032,
+            resultDesc: "Request cancelled by user",
+        })
     })
 })
 
