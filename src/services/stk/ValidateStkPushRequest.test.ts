@@ -6,8 +6,8 @@ describe("validateStkPushRequest",()=>{
     it("does not throw for a valid request",()=>{
         expect(()=>
             validateStkPushRequest({
-                phone:"0712345678",
-                amount:100,
+                phone:"0118333997",
+                amount:10000,
                 accountReference:"Order1",
             })).not.toThrow();
     });
